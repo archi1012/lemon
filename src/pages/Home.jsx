@@ -1,17 +1,24 @@
+import { useRef } from "react";
 import Hero from "../components/Hero/Hero";
 import ProductCard from "../components/ProductCard/ProductCard";
+import "./Home.css";
 
 function Home() {
+  const productsRef = useRef(null); // 🔥 reference
+
   return (
     <>
-      <Hero />
+      {/* Pass ref handler to Hero */}
+      <Hero scrollToProducts={() => {
+        productsRef.current.scrollIntoView({
+          behavior: "smooth",
+        });
+      }} />
 
-      <section className="px-12 py-12">
-        <h2 className="text-2xl font-bold mb-6">
-          Trending Products
-        </h2>
+      <section ref={productsRef} className="products-section">
+        <h2 className="section-title">Trending Products</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="products-grid">
           <ProductCard name="Lemon Oversized Tee" price="999" />
           <ProductCard name="Street Hoodie" price="1499" />
           <ProductCard name="Graphic T-Shirt" price="799" />

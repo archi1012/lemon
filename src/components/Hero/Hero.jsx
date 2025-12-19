@@ -1,28 +1,28 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import "./Hero.css";
 
-function Hero() {
+function Hero({ scrollToProducts }) {
   const textRef = useRef(null);
 
   useEffect(() => {
-    gsap.from(textRef.current.children, {
-      y: 60,
-      opacity: 0,
+    gsap.to(textRef.current.children, {
+      opacity: 1,
+      y: 0,
       duration: 1,
-      stagger: 0.3,
+      stagger: 0.2,
+      ease: "power3.out",
     });
   }, []);
 
   return (
-    <section className="h-[90vh] flex items-center justify-center bg-dark text-white">
-      <div ref={textRef} className="text-center">
-        <h1 className="text-5xl font-bold mb-4">
-          Wear Your Vibe 🍋
-        </h1>
-        <p className="text-lg opacity-80">
-          Streetwear inspired by you.
-        </p>
-        <button className="mt-8 px-8 py-3 bg-lemon text-black font-semibold rounded hover:scale-105 transition">
+    <section className="hero">
+      <div ref={textRef} className="hero-text">
+        <h1>Wear Your Vibe 🍋</h1>
+        <p>Streetwear inspired by you.</p>
+
+        {/* 🔥 Scroll trigger */}
+        <button onClick={scrollToProducts}>
           Shop Now
         </button>
       </div>

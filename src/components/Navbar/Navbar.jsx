@@ -1,31 +1,31 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import "./Navbar.css";
 
 function Navbar() {
   const navRef = useRef(null);
 
   useEffect(() => {
-    gsap.from(navRef.current, {
-      y: -80,
-      opacity: 0,
-      duration: 1,
+    gsap.to(navRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
       ease: "power3.out",
     });
   }, []);
 
   return (
-    <nav
-      ref={navRef}
-      className="h-[70px] px-12 flex items-center justify-between bg-lemon"
-    >
-      <h1 className="text-2xl font-bold">LEMON 🍋</h1>
+    <nav ref={navRef} className="navbar">
+      <div className="logo">
+        LEMON <span>🍋</span>
+      </div>
 
-      <ul className="flex gap-8 font-medium">
-        <li className="cursor-pointer">Home</li>
-        <li className="cursor-pointer">Shop</li>
-        <li className="cursor-pointer">Men</li>
-        <li className="cursor-pointer">Women</li>
-        <li className="cursor-pointer">Cart</li>
+      <ul className="nav-links">
+        <li>Home</li>
+        <li>Shop</li>
+        <li>Men</li>
+        <li>Women</li>
+        <li>Cart</li>
       </ul>
     </nav>
   );
