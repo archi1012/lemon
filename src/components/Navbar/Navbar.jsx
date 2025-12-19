@@ -27,7 +27,11 @@ function Navbar() {
         <li>Women</li>
         <li>Cart</li>
       </ul>
+      <div class="border-line">
+        
+      </div >
     </nav>
+   
   );
 }
 
