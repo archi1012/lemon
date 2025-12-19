@@ -1,0 +1,25 @@
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: white;
+}
+
+.hero-text {
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+}
+
+.hero-text button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  background: #ffd700;
+  font-weight: 600;
+  cursor: pointer;
+}
