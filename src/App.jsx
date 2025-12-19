@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -7,12 +8,14 @@ import Cart from "./pages/Cart";
 import Footer from "./components/Footer/Footer";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <>
-      <Navbar />
+      <Navbar setSearchQuery={setSearchQuery} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home searchQuery={searchQuery} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />

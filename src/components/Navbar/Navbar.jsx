@@ -1,8 +1,17 @@
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-function Navbar() {
+function Navbar({ setSearchQuery }) {
   const navigate = useNavigate();
+  const [input, setInput] = useState("");
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setInput(value);
+    setSearchQuery(value);
+    navigate("/"); // always search on home
+  };
 
   const changeCategory = (category) => {
     window.dispatchEvent(
@@ -31,7 +40,12 @@ function Navbar() {
 
       <div className="nav-right">
         <div className="search-box">
-          <input type="text" placeholder="What are you looking for?" />
+          <input
+            type="text"
+            placeholder="What are you looking for?"
+            value={input}
+            onChange={handleSearch}
+          />
         </div>
 
         <div className="icons">
