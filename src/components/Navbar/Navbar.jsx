@@ -1,37 +1,46 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const navRef = useRef(null);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    gsap.to(navRef.current, {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      ease: "power3.out",
-    });
-  }, []);
+  const changeCategory = (category) => {
+    window.dispatchEvent(
+      new CustomEvent("changeCategory", { detail: category })
+    );
+
+    const section = document.getElementById("category-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <nav ref={navRef} className="navbar">
-      <div className="logo">
-        LEMON <span>🍋</span>
+    <nav className="navbar">
+      <div className="nav-left">
+        <div className="logo" onClick={() => navigate("/")}>
+          LEMON 🍋
+        </div>
+
+        <ul className="nav-links">
+          <li onClick={() => changeCategory("MEN")}>MEN</li>
+          <li onClick={() => changeCategory("WOMEN")}>WOMEN</li>
+          <li onClick={() => changeCategory("SNEAKERS")}>SNEAKERS</li>
+        </ul>
       </div>
 
-      <ul className="nav-links">
-        <li>Home</li>
-        <li>Shop</li>
-        <li>Men</li>
-        <li>Women</li>
-        <li>Cart</li>
-      </ul>
-      <div class="border-line">
-        
-      </div >
+      <div className="nav-right">
+        <div className="search-box">
+          <input type="text" placeholder="What are you looking for?" />
+        </div>
+
+        <div className="icons">
+          <span onClick={() => navigate("/login")}>👤</span>
+          <span onClick={() => navigate("/wishlist")}>🤍</span>
+          <span onClick={() => navigate("/cart")}>🛒</span>
+        </div>
+      </div>
     </nav>
-   
   );
 }
 

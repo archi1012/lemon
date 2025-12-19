@@ -1,30 +1,55 @@
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import Hero from "../components/Hero/Hero";
-import ProductCard from "../components/ProductCard/ProductCard";
-import "./Home.css";
+import CategoryGrid from "../components/CategoryGrid/CategoryGrid";
 
 function Home() {
-  const productsRef = useRef(null); // 🔥 reference
+  const [activeCategory, setActiveCategory] = useState("MEN");
+
+  useEffect(() => {
+    const handler = (e) => setActiveCategory(e.detail);
+    window.addEventListener("changeCategory", handler);
+    return () => window.removeEventListener("changeCategory", handler);
+  }, []);
 
   return (
     <>
-      {/* Pass ref handler to Hero */}
-      <Hero scrollToProducts={() => {
-        productsRef.current.scrollIntoView({
-          behavior: "smooth",
-        });
-      }} />
+      <Hero />
 
-      <section ref={productsRef} className="products-section">
-        <h2 className="section-title">Trending Products</h2>
+      <div id="category-section">
+        {activeCategory === "MEN" && (
+          <CategoryGrid
+            title="Men Collection"
+            categories={[
+              { name: "Shirts", image: "https://source.unsplash.com/400x600/?men,shirt" },
+              { name: "T-Shirts", image: "https://source.unsplash.com/400x600/?men,tshirt" },
+              { name: "Jeans", image: "https://source.unsplash.com/400x600/?men,jeans" },
+              { name: "Polos", image: "https://source.unsplash.com/400x600/?men,polo" },
+            ]}
+          />
+        )}
 
-        <div className="products-grid">
-          <ProductCard name="Lemon Oversized Tee" price="999" />
-          <ProductCard name="Street Hoodie" price="1499" />
-          <ProductCard name="Graphic T-Shirt" price="799" />
-          <ProductCard name="Casual Wear" price="699" />
-        </div>
-      </section>
+        {activeCategory === "WOMEN" && (
+          <CategoryGrid
+            title="Women Collection"
+            categories={[
+              { name: "Tops", image: "https://source.unsplash.com/400x600/?women,top" },
+              { name: "Dresses", image: "https://source.unsplash.com/400x600/?women,dress" },
+              { name: "Jeans", image: "https://source.unsplash.com/400x600/?women,jeans" },
+              { name: "Jackets", image: "https://source.unsplash.com/400x600/?women,jacket" },
+            ]}
+          />
+        )}
+
+        {activeCategory === "SNEAKERS" && (
+          <CategoryGrid
+            title="Sneakers"
+            categories={[
+              { name: "Street Sneakers", image: "https://source.unsplash.com/400x600/?sneakers" },
+              { name: "Running Shoes", image: "https://source.unsplash.com/400x600/?running,shoes" },
+            ]}
+          />
+        )}
+      </div>
     </>
   );
 }

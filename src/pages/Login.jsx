@@ -1,27 +1,33 @@
+import "./Login.css";
+
 function Login() {
   return (
-    <div className="h-screen flex items-center justify-center">
-      <form className="border p-8 rounded w-80">
-        <h2 className="text-xl font-bold mb-4">
-          Login
-        </h2>
+    <div className="login-page">
+      <div className="login-card">
+        <h2>Login to LEMON 🍋</h2>
+        <p>Welcome back! Please login to your account.</p>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
-        />
+        <form>
+          <input
+            type="email"
+            placeholder="Email address"
+            required
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-4 p-2 border rounded"
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+          />
 
-        <button className="w-full bg-black text-white py-2 rounded">
-          Login
-        </button>
-      </form>
+          <button type="submit">Login</button>
+        </form>
+
+        <div className="login-footer">
+          <span>New to LEMON?</span>
+          <a href="#">Create an account</a>
+        </div>
+      </div>
     </div>
   );
 }

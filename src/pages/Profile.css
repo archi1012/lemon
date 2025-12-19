@@ -1,0 +1,48 @@
+.profile-page {
+  height: 100vh;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.profile-card h2 {
+  margin-bottom: 20px;
+}
+
+.profile-info p {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.profile-actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.profile-actions button.logout {
+  background: #ff0000;
+  color: white;
+}
+
+.profile-actions button:not(.logout) {
+  background: black;
+  color: white;
+}
